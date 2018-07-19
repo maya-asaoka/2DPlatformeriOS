@@ -5,7 +5,7 @@ using UnityEngine;
 public class PhysicsObject : MonoBehaviour {
 
     public float minGroundNormalY = 0.65f;
-    public float gravityModifier = 0.75f;
+    public float gravityModifier = 1f;
 
     protected bool grounded;
     protected Vector2 groundNormal;
@@ -37,9 +37,16 @@ public class PhysicsObject : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+    {
+        targetVelocity = Vector2.zero;
+        ComputeVelocity ();
 	}
+
+    protected virtual void ComputeVelocity() 
+    {
+        
+    }
 
     // called more frequently than update
     private void FixedUpdate()
