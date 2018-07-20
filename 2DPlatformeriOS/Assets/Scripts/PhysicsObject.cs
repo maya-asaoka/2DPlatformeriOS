@@ -5,7 +5,7 @@ using UnityEngine;
 public class PhysicsObject : MonoBehaviour {
 
     public float minGroundNormalY = 0.65f;
-    public float gravityModifier = 1f;
+    public float gravityModifier = 1.25f;
 
     protected bool grounded;
     protected Vector2 groundNormal;

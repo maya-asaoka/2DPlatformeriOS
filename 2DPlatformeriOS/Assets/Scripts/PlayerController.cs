@@ -56,7 +56,7 @@ public class PlayerController : PhysicsObject {
         targetVelocity = move * maxSpeed;
     }
 
-    // to see if player has entered the trigger (ie. the fall detector) or a checkpoint
+    // checking if player collided with a fall detector, checkpoint, or an enemy
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "FallDetector")
@@ -75,6 +75,19 @@ public class PlayerController : PhysicsObject {
         if (other.tag == "Respawn")
         {
             respawnPoint = other.transform.position;
+        }
+        if (other.tag == "Enemy")
+        {
+            animator.SetBool("hurt", true);
+            if (GameController.instance.PlayerHit() == true)
+            {
+                velocity.y = jumpTakeOffSpeed;
+                animator.SetBool("hurt", false);
+            }
+            else
+            {
+                isDead = true;
+            }
         }
     }
 
