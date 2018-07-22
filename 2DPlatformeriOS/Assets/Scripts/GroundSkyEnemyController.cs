@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundEnemyController : EnemyController {
+public class GroundSkyEnemyController : EnemyController {
     
-    // switch directions at edge of ground
+    // switch directions at edge of ground or sky
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Respawn")

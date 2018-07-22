@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 60853283995406768}
   - component: {fileID: 111867320809603438}
   - component: {fileID: 95679733288968430}
-  - component: {fileID: 114814357946117166}
+  - component: {fileID: 114621084125143722}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Enemy
@@ -128,7 +128,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114814357946117166
+--- !u!114 &114621084125143722
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,10 +136,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081752870397974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2ef4ac8e0654551b69897fec54293e, type: 3}
+  m_Script: {fileID: 11500000, guid: d30604facf2b14b9899fbdc10c685593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 0.02
+  velocity: 0.03
 --- !u!212 &212999623708697128
 SpriteRenderer:
   m_ObjectHideFlags: 1

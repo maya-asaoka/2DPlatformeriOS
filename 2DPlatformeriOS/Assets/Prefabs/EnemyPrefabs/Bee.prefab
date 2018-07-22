@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95857300175140370}
   - component: {fileID: 50288703042390372}
   - component: {fileID: 58873143508218754}
-  - component: {fileID: 114619682052639802}
+  - component: {fileID: 114121083505356200}
   m_Layer: 0
   m_Name: Bee
   m_TagString: Enemy
@@ -112,7 +112,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114619682052639802
+--- !u!114 &114121083505356200
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -120,9 +120,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1570871214664480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2ef4ac8e0654551b69897fec54293e, type: 3}
+  m_Script: {fileID: 11500000, guid: d30604facf2b14b9899fbdc10c685593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: 0.04
 --- !u!212 &212380454063858282
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,22 +6,23 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    // singleton
     public static GameController instance;
+
     public Text HPText;
     public GameObject GameOverText;
     public GameObject WinningText;
 
-    private int hp = 3;
+    public int initialHP = 3;
     public bool gameOver = false;
 
 
-    // Use this for initialization
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            HPText.text = " HP: " + hp;
+            HPText.text = " HP: " + initialHP;
         }
         else if (instance != this)
         {
@@ -43,15 +44,15 @@ public class GameController : MonoBehaviour {
     // returns true if player is still alive, false if dead
     public bool PlayerHit()
     {
-        if (hp > 1)
+        if (initialHP > 1)
         {
-            hp = hp - 1;
-            HPText.text = " HP: " + hp.ToString();
+            initialHP = initialHP - 1;
+            HPText.text = " HP: " + initialHP.ToString();
             return true;
         }
-        else if (hp == 1)
+        else if (initialHP == 1)
         {
-            hp = 0;
+            initialHP = 0;
             HPText.text = " HP: 0";
             GameOverText.SetActive(true);
             gameOver = true;

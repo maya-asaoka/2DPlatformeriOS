@@ -34,7 +34,7 @@ public abstract class EnemyController : MonoBehaviour
         rb2d.position = rb2d.position + moveDistance;
     }
 
-    // switch directions at edge of ground
+    // switch directions at edge of ground/sky/platform
     protected abstract void OnTriggerEnter2D(Collider2D collision);
 
 }

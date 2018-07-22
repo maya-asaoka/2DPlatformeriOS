@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * Spawns a random enemy type at one of its type's spawn points
- */
-
 public class EnemySpawner : MonoBehaviour {
 
     // enemy prefabs
@@ -27,18 +23,19 @@ public class EnemySpawner : MonoBehaviour {
     private string[] skyEnemies = new string[] { "Bee", "Bat" };
     private string[] platformEnemies = new string[] { "Ladybug", "Snail" };
 
-    // spawn points for each type
+    // spawn points for each type of enemy
     private Vector3[] groundSpawnPts = new Vector3[] { new Vector3(8f, -3.36f, 24.85192f) };
     private Vector3[] skySpawnPts = 
         new Vector3[] { new Vector3(8.4f, -1f, 24.85192f), new Vector3(8f, 0.6f, 24.85192f), new Vector3(8f, 2.6f, 24.85192f), new Vector3(8f, 4f, 24.85192f)};
     private Vector3[] platformSpawnPts = 
         new Vector3[] { new Vector3(-6.2f, 0.185f, 24.85192f), new Vector3(6.2f, 0.185f, 24.85192f), new Vector3(1.542f, 3.65f, 24.85192f), new Vector3(-7.75f, 1.92f, 24.85192f)};
 
-	// Use this for initialization
+	
 	void Start () {
         InvokeRepeating("Spawn", 2f, spawnRate);
 	}
 	
+
 	void Spawn()
     {
         if (currentEnemyCount == maxEnemies)
@@ -65,6 +62,7 @@ public class EnemySpawner : MonoBehaviour {
             default:
                 break;
         }
+
         currentEnemyCount++;
     }
 
@@ -109,6 +107,7 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+    // platform enemies are spawned at each platform (in order) to avoid crowding platforms with multiple enemies
     private void spawnPlatformEnemy()
     {
         Vector3 spawnPt = platformSpawnPts[platformIndex];
@@ -127,10 +126,13 @@ public class EnemySpawner : MonoBehaviour {
             default:
                 break;
         }
+
+        // if all platforms have enemies, loops back to first platform
         if (platformIndex == platformSpawnPts.Length)
         {
             platformIndex = 0;
         }
+
         else { platformIndex++; }
     }
 

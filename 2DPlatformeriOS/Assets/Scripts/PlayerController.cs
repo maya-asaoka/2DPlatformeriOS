@@ -7,17 +7,18 @@ public class PlayerController : PhysicsObject {
     public bool isDead;
     public float maxSpeed = 7f;
     public float jumpTakeOffSpeed = 7f;
+
     public Vector3 respawnPoint;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    
-	// Use this for initialization
+
 	void Awake () {
         spriteRenderer = GetComponent<SpriteRenderer> ();
         animator = GetComponent<Animator> ();
 	}
 
+    // computes velocity based on player input
     protected override void ComputeVelocity()
     {
         if (isDead)
@@ -26,15 +27,15 @@ public class PlayerController : PhysicsObject {
         }
 
         Vector2 move = Vector2.zero;
-
         move.x = Input.GetAxis ("Horizontal");
 
+        // can only jump if grounded (no double jumps)
         if (Input.GetButtonDown ("Jump") && grounded) 
         {
             velocity.y = jumpTakeOffSpeed;
         }
 
-        // cancel jump in midair if jump button released
+        // slow jump in midair if jump button released (cancel jump)
         else if (Input.GetButtonUp ("Jump"))
         {
             if (velocity.y > 0)
@@ -43,6 +44,7 @@ public class PlayerController : PhysicsObject {
             }
         }
 
+        // face sprite in appropriate direction for movement
         bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
         if (flipSprite)
         {
@@ -56,7 +58,7 @@ public class PlayerController : PhysicsObject {
         targetVelocity = move * maxSpeed;
     }
 
-    // checking if player collided with a fall detector, checkpoint, or an enemy
+    // checking if player collided with a fall detector, checkpoint (respawn point), or an enemy
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "FallDetector")
