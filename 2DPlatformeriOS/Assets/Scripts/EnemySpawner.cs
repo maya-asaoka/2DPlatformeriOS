@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+    public static EnemySpawner instance;
+
     // enemy prefabs
     public GameObject slimePrefab;
-    public GameObject snakePrefab;
+    public GameObject spiderPrefab;
     public GameObject beePrefab;
     public GameObject batPrefab;
     public GameObject ladybugPrefab;
@@ -19,24 +21,35 @@ public class EnemySpawner : MonoBehaviour {
     private int platformIndex = 0;
 
     private string[] enemyTypes = new string[] { "Ground", "Sky", "Platform" };
-    private string[] groundEnemies = new string[] { "Slime", "Snake" };
+    private string[] groundEnemies = new string[] { "Slime", "Spider" };
     private string[] skyEnemies = new string[] { "Bee", "Bat" };
     private string[] platformEnemies = new string[] { "Ladybug", "Snail" };
 
     // spawn points for each type of enemy
-    private Vector3[] groundSpawnPts = new Vector3[] { new Vector3(8f, -3.36f, 24.85192f) };
+    private Vector3[] groundSpawnPts = new Vector3[] { new Vector3(8f, -3.34f, 24.85192f) };
     private Vector3[] skySpawnPts = 
         new Vector3[] { new Vector3(8.4f, -1f, 24.85192f), new Vector3(8f, 0.6f, 24.85192f), new Vector3(8f, 2.6f, 24.85192f), new Vector3(8f, 4f, 24.85192f)};
     private Vector3[] platformSpawnPts = 
-        new Vector3[] { new Vector3(-6.2f, 0.185f, 24.85192f), new Vector3(6.2f, 0.185f, 24.85192f), new Vector3(1.542f, 3.65f, 24.85192f), new Vector3(-7.75f, 1.92f, 24.85192f)};
+        new Vector3[] { new Vector3(-6.2f, 0.185f, 24.85192f), new Vector3(6f, 0.185f, 24.85192f), new Vector3(1.542f, 3.65f, 24.85192f), new Vector3(-7.75f, 1.92f, 24.85192f)};
 
 	
 	void Start () {
         InvokeRepeating("Spawn", 2f, spawnRate);
 	}
-	
 
-	void Spawn()
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Spawn()
     {
         if (currentEnemyCount == maxEnemies)
         {
@@ -77,8 +90,8 @@ public class EnemySpawner : MonoBehaviour {
                 Instantiate(slimePrefab, spawnPt, Quaternion.identity);
                 break;
 
-            case "Snake":
-                Instantiate(snakePrefab, spawnPt, Quaternion.identity);
+            case "Spider":
+                Instantiate(spiderPrefab, spawnPt, Quaternion.identity);
                 break;
 
             default:

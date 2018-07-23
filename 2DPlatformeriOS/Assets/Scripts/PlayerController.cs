@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class PlayerController : PhysicsObject {
 
+    public static PlayerController instance;
+
     public bool isDead;
     public float maxSpeed = 7f;
     public float jumpTakeOffSpeed = 7f;
 
     public Vector3 respawnPoint;
+    public GameObject playerBulletPrefab;
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private Animator animator;
 
 	void Awake () {
-        spriteRenderer = GetComponent<SpriteRenderer> ();
-        animator = GetComponent<Animator> ();
+        if (instance == null)
+        {
+            instance = this;
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            animator = GetComponent<Animator>();
+
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
 	}
 
     // computes velocity based on player input
@@ -24,6 +36,11 @@ public class PlayerController : PhysicsObject {
         if (isDead)
         {
             return;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         }
 
         Vector2 move = Vector2.zero;
@@ -45,7 +62,7 @@ public class PlayerController : PhysicsObject {
         }
 
         // face sprite in appropriate direction for movement
-        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
+        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < -0.01f));
         if (flipSprite)
         {
             spriteRenderer.flipX = !spriteRenderer.flipX;
@@ -57,6 +74,7 @@ public class PlayerController : PhysicsObject {
         // set x velocity
         targetVelocity = move * maxSpeed;
     }
+
 
     // checking if player collided with a fall detector, checkpoint (respawn point), or an enemy
     private void OnTriggerEnter2D(Collider2D other)

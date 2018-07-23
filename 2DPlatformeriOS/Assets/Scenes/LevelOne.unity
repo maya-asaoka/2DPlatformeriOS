@@ -940,7 +940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &647469375
 Transform:
   m_ObjectHideFlags: 0
@@ -1174,7 +1174,7 @@ Tilemap:
   - m_RefCount: 12
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 0.9858491, b: 0.9858491, a: 0.75686276}
+  m_Color: {r: 1, g: 0.9858491, b: 0.9858491, a: 0.41960785}
   m_Origin: {x: -10, y: -4, z: 0}
   m_Size: {x: 21, y: 9, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -1819,6 +1819,9 @@ MonoBehaviour:
   maxSpeed: 7
   jumpTakeOffSpeed: 7
   respawnPoint: {x: 0, y: 0, z: 0}
+  playerBulletPrefab: {fileID: 1422323450561286, guid: c110508b9b9754073ab8fb5a8b1cbda5,
+    type: 2}
+  spriteRenderer: {fileID: 0}
 --- !u!212 &1002275955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2258,6 +2261,7 @@ MonoBehaviour:
   HPText: {fileID: 1620313848}
   GameOverText: {fileID: 132687330}
   WinningText: {fileID: 1540096377}
+  initialHP: 3
   gameOver: 0
 --- !u!4 &1207172643
 Transform:
@@ -2377,7 +2381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimePrefab: {fileID: 1330101482279304, guid: 858483a3fd004429698d64ff8fe04586,
     type: 2}
-  snakePrefab: {fileID: 1081752870397974, guid: c87b848017db6471b91ef2f6753ef15b,
+  spiderPrefab: {fileID: 1570372492974970, guid: 134e2fdc13e4444af924fbc3688326b4,
     type: 2}
   beePrefab: {fileID: 1570871214664480, guid: 5d1886f02cd4b46779cc001c80aca885, type: 2}
   batPrefab: {fileID: 1875584004959824, guid: 03e1b0548730341208f95190fd7507a0, type: 2}
@@ -2386,9 +2390,8 @@ MonoBehaviour:
   snailPrefab: {fileID: 1757509613152252, guid: f6e27f042a68044c99cc9940ebbba61e,
     type: 2}
   currentEnemyCount: 0
-  spawnRate: 3
   maxEnemies: 15
-  maxEnemiesPerPlatform: 1
+  spawnRate: 2
 --- !u!4 &1459871897
 Transform:
   m_ObjectHideFlags: 0
