@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : PhysicsObject {
 
@@ -15,6 +16,7 @@ public class PlayerController : PhysicsObject {
 
     public SpriteRenderer spriteRenderer;
     private Animator animator;
+
 
 	void Awake () {
         if (instance == null)
@@ -38,22 +40,22 @@ public class PlayerController : PhysicsObject {
             return;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (CrossPlatformInputManager.GetButtonDown("Fire1"))
         {
             Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         }
 
         Vector2 move = Vector2.zero;
-        move.x = Input.GetAxis ("Horizontal");
+        move.x = CrossPlatformInputManager.GetAxis ("Horizontal");
 
         // can only jump if grounded (no double jumps)
-        if (Input.GetButtonDown ("Jump") && grounded) 
+        if (CrossPlatformInputManager.GetButtonDown ("Jump") && grounded) 
         {
             velocity.y = jumpTakeOffSpeed;
         }
 
         // slow jump in midair if jump button released (cancel jump)
-        else if (Input.GetButtonUp ("Jump"))
+        else if (CrossPlatformInputManager.GetButtonUp ("Jump"))
         {
             if (velocity.y > 0)
             {
