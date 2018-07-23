@@ -44,7 +44,18 @@ public class BulletController : MonoBehaviour {
             EnemySpawner.instance.currentEnemyCount--;
             GameObject enemy = collision.gameObject;
             Destroy(enemy);
+
+            if (GameController.instance.enemiesLeftToKill == 1)
+            {
+                GameController.instance.PlayerWon();
+            }
+            else
+            {
+                GameController.instance.enemiesLeftToKill--;
+            }
+
             Destroy(gameObject);
+
         }
         if (collision.tag == "Respawn")
         {

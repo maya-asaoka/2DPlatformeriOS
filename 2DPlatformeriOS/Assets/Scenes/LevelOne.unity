@@ -2101,7 +2101,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -33.2
+      value: -33.200012
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: m_SizeDelta.x
@@ -2137,7 +2137,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 9.35
+      value: 9.349976
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: m_SizeDelta.y
@@ -2568,6 +2568,8 @@ MonoBehaviour:
   GameOverText: {fileID: 132687330}
   WinningText: {fileID: 1540096377}
   initialHP: 3
+  enemiesToKillToWin: 15
+  enemiesLeftToKill: 15
   gameOver: 0
 --- !u!4 &1207172643
 Transform:
@@ -2898,16 +2900,16 @@ RectTransform:
   m_GameObject: {fileID: 2035018170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.35, z: 1}
+  m_LocalScale: {x: 1.6, y: 0.35, z: 1}
   m_Children:
   - {fileID: 541040798}
   m_Father: {fileID: 1639670180}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.78, y: 0.01}
-  m_AnchorMax: {x: 0.99, y: 0.15}
-  m_AnchoredPosition: {x: 108.95001, y: 124.2}
-  m_SizeDelta: {x: -217.89996, y: 248.4}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 822.45, y: -248.8}
+  m_SizeDelta: {x: -1682.8999, y: -515.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035018172
 MonoBehaviour:

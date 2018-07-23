@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour {
     public GameObject WinningText;
 
     public int initialHP = 3;
+    public int enemiesToKillToWin = 15;
+    public int enemiesLeftToKill = 15;
     public bool gameOver = false;
 
 
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour {
         {
             instance = this;
             HPText.text = " HP: " + initialHP;
+            enemiesLeftToKill = enemiesToKillToWin;
         }
         else if (instance != this)
         {
