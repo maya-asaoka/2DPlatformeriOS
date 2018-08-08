@@ -3,6 +3,7 @@
 A 2D platformer-style mobile game created in Unity and built to iOS with Xcode
 
 Deployment Target: iOS 8.0
+
 Assets from: https://kenney.nl/
 
 ## Screenshots
