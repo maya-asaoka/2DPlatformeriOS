@@ -9,14 +9,28 @@ public class GameController : MonoBehaviour {
     // singleton
     public static GameController instance;
 
+    // true if time mode, false if enemies mode
+    public bool timeModeOn;
+
     public Text HPText;
+    public Text EnemiesLeftText;
     public GameObject GameOverText;
-    public GameObject WinningText;
+    public GameObject WinningTextEnemies;
+
+    public Text TimeText;
+    public Text EnemiesKilledText;
+    public GameObject WinningTextTime;
 
     public int initialHP = 3;
-    public int enemiesToKillToWin = 15;
-    public int enemiesLeftToKill = 15;
     public bool gameOver = false;
+
+    // enemies mode
+    public int enemiesToKillToWin = 15;
+    public int enemiesKilled = 0;
+
+    // time mode
+    public int timeStart;
+    private float endTime;
 
 
     void Awake()
@@ -25,7 +39,20 @@ public class GameController : MonoBehaviour {
         {
             instance = this;
             HPText.text = " HP: " + initialHP;
-            enemiesLeftToKill = enemiesToKillToWin;
+
+            if (timeModeOn) 
+            {
+                TimeText.gameObject.SetActive(true);
+                EnemiesLeftText.gameObject.SetActive(false);
+                TimeText.text = "Time: " + timeStart;
+                endTime = Time.time + timeStart;
+            }
+            else
+            {
+                TimeText.gameObject.SetActive(false);
+                EnemiesLeftText.gameObject.SetActive(true);
+                EnemiesLeftText.text = "KILLED: 0/" + enemiesToKillToWin;
+            }
         }
         else if (instance != this)
         {
@@ -40,6 +67,19 @@ public class GameController : MonoBehaviour {
         if (gameOver && Input.anyKeyDown)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else if (!timeModeOn) 
+        {
+            EnemiesLeftText.text = "KILLED: " + enemiesKilled + "/" + enemiesToKillToWin;
+        }
+        else if (timeModeOn) {
+            int timeLeft = Mathf.RoundToInt(endTime - Time.time);
+            TimeText.text = "Time: " + timeLeft;
+            if (timeLeft <= 0) 
+            {
+                timeLeft = 0;
+                PlayerWon();
+            }
         }
     }
 
@@ -67,7 +107,23 @@ public class GameController : MonoBehaviour {
     // shows winning text 
     public void PlayerWon()
     {
-        WinningText.SetActive(true);
+        if (timeModeOn)
+        {
+            WinningTextTime.SetActive(true);
+            EnemiesKilledText.text = "Enemies Killed: " + enemiesKilled;
+        }
+        else
+        {
+            WinningTextEnemies.SetActive(true);
+        }
+
         gameOver = true;
     }
+
+
+    public void returnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

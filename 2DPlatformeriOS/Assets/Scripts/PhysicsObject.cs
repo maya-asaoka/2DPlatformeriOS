@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PhysicsObject : MonoBehaviour {
 
-    public float minGroundNormalY = 0.65f;
+    public float minNormalGround = 0.65f;
     public float gravityModifier = 1.25f;
 
     protected bool grounded;
-    protected Vector2 groundNormal;
+    protected Vector2 normalGround;
 
     protected Vector2 targetVelocity;
     protected Rigidbody2D rb2d;
@@ -43,10 +43,7 @@ public class PhysicsObject : MonoBehaviour {
         ComputeVelocity ();
 	}
 
-    protected virtual void ComputeVelocity() 
-    {
-        
-    }
+    protected virtual void ComputeVelocity() {}
 
     // called more frequently than update
     private void FixedUpdate()
@@ -58,7 +55,7 @@ public class PhysicsObject : MonoBehaviour {
 
         Vector2 deltaPosition = velocity * Time.deltaTime;
 
-        Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
+        Vector2 moveAlongGround = new Vector2(normalGround.y, -normalGround.x);
 
         Vector2 move = moveAlongGround * deltaPosition.x;
 
@@ -90,13 +87,13 @@ public class PhysicsObject : MonoBehaviour {
                 Vector2 currentNormal = hitBufferList [i].normal;
 
                 // check if ground is flat enough to stand on
-                if (currentNormal.y > minGroundNormalY)
+                if (currentNormal.y > minNormalGround)
                 {
                     grounded = true;
 
                     if (yMovement)
                     {
-                        groundNormal = currentNormal;
+                        normalGround = currentNormal;
                         currentNormal.x = 0;
                     }
                 }

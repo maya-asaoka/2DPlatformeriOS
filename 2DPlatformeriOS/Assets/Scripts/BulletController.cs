@@ -45,13 +45,10 @@ public class BulletController : MonoBehaviour {
             GameObject enemy = collision.gameObject;
             Destroy(enemy);
 
-            if (GameController.instance.enemiesLeftToKill == 1)
+            GameController.instance.enemiesKilled++;
+            if (GameController.instance.enemiesKilled == GameController.instance.enemiesToKillToWin)
             {
                 GameController.instance.PlayerWon();
-            }
-            else
-            {
-                GameController.instance.enemiesLeftToKill--;
             }
 
             Destroy(gameObject);
